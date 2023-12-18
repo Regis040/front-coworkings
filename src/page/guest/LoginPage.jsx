@@ -1,4 +1,9 @@
+import { useState } from "react";
+
 const LoginPage = () => {
+
+    const [message, setMessage] = useState(null);
+    // La login page va =faire un aller-retpur du front au back afin de récupérer le login et donc le rôle de l'utilisateur
     const handleLogin = async (event) => {
       event.preventDefault();
   
@@ -35,13 +40,16 @@ const LoginPage = () => {
   
       // si le token existe
       if (token) {
-        // je le stocke dans le local storage du navigateur
         localStorage.setItem("jwt", token);
+        setMessage("Vous êtes bien connecté");
+      } else {
+        setMessage("Erreur lors de la connexion");
       }
     };
   
     return (
       <section>
+       {message && <p>{message}</p>}
         <form onSubmit={handleLogin}>
           <label>
             username

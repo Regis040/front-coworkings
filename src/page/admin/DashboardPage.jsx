@@ -3,7 +3,7 @@ import HeaderAdmin from "../../component/admin/HeaderAdmin";
 import { useEffect } from "react";
 
 const DashboardPage = () => {
-
+        //  Le Dashboard va rédirigé le user s'il s'est mal loggé
         // Je récupère la fonction navigate du react-router
         //  qui permet de rediriger un utilisateur
         const navigate = useNavigate();
