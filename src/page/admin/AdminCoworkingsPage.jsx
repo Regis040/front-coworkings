@@ -18,14 +18,14 @@ const AdminCoworkingsPage = () => {
 
 //   Au clic que le bouton "supprimer", la fonction handleDeleteCoworking récupère deux paramètres que sont l'event et l'id du coworking à supprimer
   const handleDeleteCoworking = async (event, coworkingId) => {
-    // cette action est possible si un token a bien été créé et que donc l'utilisateur a bien été identifié.
+    // cette action est possible si un token a bien été récupéré  et que donc l'utilisateur a bien été identifié.
     const token = localStorage.getItem("jwt");
     // Une requête de suppression du coworking est envoyé via l'API
     //Le coworking est identifié grâce à son id
     await fetch("http://localhost:3000/api/coworkings/" + coworkingId, {
         // La méthode est DELETE 
       method: "DELETE",
-    //   On envoie à l'API le token pour effectuer la suppression
+    //   On envoie à l'API le token pour authoriser la suppression
       headers: { Authorization: "Bearer " + token },
     });
     // On récupère le nouveau coworkings ( avec la suppression du coworking)
