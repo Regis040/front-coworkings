@@ -1,64 +1,60 @@
 const LoginPage = () => {
-
-        const handleLogin = async (event) => { // peut etre placé en async car c'est du handle et donc permet du await plus bas
-            // Evite que le navigatueur se réinitialise lors du "submit"
-            event.preventDefault();
-            // Je récupère ces deux données tapées par le user en front
-            const username = event.target.username.value;
-            const password = event.target.password.value;
-
-            // console.log(username, password);
-
-
-                // je créé objet en json avec username et password
-                // je fais un fetch de type POST sur mon API login, en incluant le json
-                // si l'api valide => jwt dans la réponse
-                // sinon => erreur dans la réponse
-
-            // Je récupère ces données que je place dans un objet
-            const loginData = {
-                username,
-                password,
-            }
-            // Je transforme ces données en Json
-            const loginDataJson = JSON.stringify(loginData);
-
-
-            // Je vais chercher la route du login, en méthode "post", en précisant qu'il s'agit de Json
-            // et  j'envoie mes données login/username
-            const loginResponse = await fetch("http://localhost:3000/api/users/login", {
-                method: "POST",
-                headers : {
-                    "content-Type": "application/json",
-                },
-                body: loginDataJson,
-            })
-            
-                // la réponse de l'api est renvoyée au front en json
-                const loginResponseData = await loginResponse.json();
-                // et le token est reçu
-                const token = loginResponseData.data;
-
-                console.log(token);               
-
-        }
-
+    const handleLogin = async (event) => {
+      event.preventDefault();
+  
+      // je récupère les infos du form (username et password)
+      const username = event.target.username.value;
+      const password = event.target.password.value;
+  
+      // je créé un objet avec les valeurs de username et password
+      const loginData = {
+        username,
+        password,
+      };
+  
+      // je transforme mon objet en JSON
+      const loginDataJson = JSON.stringify(loginData);
+  
+      // je fais une requête vers l'API
+      // de type post
+      // avec mon objet JSON (username, password) en body
+      // vu que j'envoie du JSON, je dois préciser
+      // dans le headers que le contenu du body est du JSON
+      const loginResponse = await fetch("http://localhost:3000/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: loginDataJson,
+      });
+  
+      // je transforme la réponse de l'API (JSON) vers du JS
+      const loginResponseData = await loginResponse.json();
+      // je récupère le token généré par l'API dans la réponse
+      const token = loginResponseData.data;
+  
+      // si le token existe
+      if (token) {
+        // je le stocke dans le local storage du navigateur
+        localStorage.setItem("jwt", token);
+      }
+    };
+  
     return (
-        <section>
-            <form onSubmit={handleLogin}>
-                <label>
-                    username
-                    <input type="text" name="username" />
-                </label>
-                <label>
-                    password
-                    <input type="password" name="password"/>
-                </label>
-                <label>
-                    <input type="submit" />
-                </label>
-            </form>
-        </section>
-    )
-}
-export default LoginPage;
+      <section>
+        <form onSubmit={handleLogin}>
+          <label>
+            username
+            <input type="text" name="username" />
+          </label>
+          <label>
+            password
+            <input type="password" name="password" />
+          </label>
+          <input type="submit" />
+        </form>
+      </section>
+    );
+  };
+  
+  export default LoginPage;

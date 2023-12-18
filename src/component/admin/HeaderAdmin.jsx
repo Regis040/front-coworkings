@@ -1,13 +1,9 @@
-import HeaderAdmin from "../../component/admin/HeaderAdmin";
-
-const DashboardPage = () => {
+const HeaderAdmin = () => {
   return (
-    <>
-      <HeaderAdmin />
-
-      <h2>Vous êtes bien connecté en tant qu'admin</h2>
-    </>
+    <header>
+      <h2>Header admin</h2>
+    </header>
   );
 };
 
-export default DashboardPage;
+export default HeaderAdmin;
