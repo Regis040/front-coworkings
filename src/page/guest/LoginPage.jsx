@@ -49,6 +49,7 @@ const LoginPage = () => {
   
     return (
       <section>
+      {/* on affiche le messsage */}
        {message && <p>{message}</p>}
         <form onSubmit={handleLogin}>
           <label>

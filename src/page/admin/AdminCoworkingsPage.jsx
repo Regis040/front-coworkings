@@ -11,7 +11,7 @@ const AdminCoworkingsPage = () => {
     (async () => {
       const coworkingsResponse = await fetch("http://localhost:3000/api/coworkings");
       const coworkingsResponseData = await coworkingsResponse.json();
-    //   ...premier rendu
+    //   ...premier rendu : coworkings.map .....
       setCoworkings(coworkingsResponseData);
     })();
   }, []);
