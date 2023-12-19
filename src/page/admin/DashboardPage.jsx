@@ -24,7 +24,6 @@ const DashboardPage = () => {
         // on redirige ...
 });
 
-
   return (
     <>
       <HeaderAdmin />

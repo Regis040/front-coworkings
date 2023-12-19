@@ -7,6 +7,7 @@ import DashboardPage from "./page/admin/DashboardPage";
 import LoginPage from "./page/guest/LoginPage";
 import AdminCoworkingsPage from "./page/admin/AdminCoworkingsPage";
 import AdminCoworkingCreate from "./page/admin/AdminCoworkingCreate";
+import AdminCoworkingUpdate from "./page/admin/AdminCoworkingUpdate";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/admin/" element={<DashboardPage />} />
         <Route path="/admin/coworkings" element={<AdminCoworkingsPage />} />
         <Route path="/admin/coworkings/create" element={<AdminCoworkingCreate />} />
+        <Route path="/admin/coworkings/update/:id" element={<AdminCoworkingUpdate />} />
       </Routes>
     </BrowserRouter>
   );
