@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import HeaderAdmin from "../../component/admin/HeaderAdmin";
 
 const AdminCoworkingUpdate = () => {
     // fonction hook qui permet de prendre l'id en paramètre et donc d'identifier l'élement concerné
@@ -75,6 +76,8 @@ const AdminCoworkingUpdate = () => {
   };
 
   return (
+    <>
+    <HeaderAdmin />
     <div>
     {/* si le coworking existe alors je récupère le formulaire pré-rempli avec les données du coworking identifié avec son id
     le "defaultvalue" permet la modification des champs et donc leur mis à jour 
@@ -147,6 +150,7 @@ const AdminCoworkingUpdate = () => {
         </form>
       )}
     </div>
+    </>
   );
 };
 

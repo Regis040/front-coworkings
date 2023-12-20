@@ -1,4 +1,5 @@
 import { useState } from "react";
+import HeaderAdmin from "../../component/admin/HeaderAdmin";
 
 const AdminCoworkingCreate = () => {
   // je créé un state pour afficher un message de succès ou d'erreur
@@ -71,7 +72,7 @@ const AdminCoworkingCreate = () => {
     }
     return (
             <>
-
+            <HeaderAdmin />
             {message && <p>{message}</p>}
 
             {/* 1. Je créé un formulaire afin de récupèrer les données qui doivent coller avec le model de l'API */}

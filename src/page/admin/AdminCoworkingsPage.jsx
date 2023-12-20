@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
+import HeaderAdmin from "../../component/admin/HeaderAdmin";
+import { jwtDecode } from "jwt-decode";
 // Ce composant a pour objectif de créer une route qui permet à une personne autorisée à supprimer un élement, ici 1 coworking
 // Une route a donc été créée sur App.js
 const AdminCoworkingsPage = () => {
     // Une fonction hook useState est  créée afin d'être utilisée deux fois:
     // d'abord pour un premier rendu puis pour un second qui montre le résultat de l'action de DELETE
   const [coworkings, setCoworkings] = useState(null);
+
+  // Je récupère le token dasn le localStorage puis je decode npm install jwt-decode
+  const token = localStorage.getItem("jwt");
+  const decodedToken = jwtDecode(token);
 
     // Je récupère tous les coworkings dans une variable afin qu'ils apparaissent lors de mon premier rendu
   useEffect(() => {
@@ -38,6 +44,7 @@ const AdminCoworkingsPage = () => {
 
   return (
     <>
+    <HeaderAdmin />
       <h1>Liste des coworkings : </h1>
 
       {coworkings ? (
@@ -48,7 +55,11 @@ const AdminCoworkingsPage = () => {
                 <h2>{coworking.name}</h2>
                 {/* Pour la gestion de deux paramètres que sont event(par défaut) et l'id du coworking:
                 la fonction "onClick" fait appel une autre fonction qui prend les deux paramètres */} 
-                <button onClick={(event) => handleDeleteCoworking(event, coworking.id)}>Supprimer</button>
+                {/* J'ai pris soin de récupèrer l'id du role de l'utilisateur et si l'itilisateur est superadmin ou admin
+                le bouton supprimer apparait*/}
+                {decodedToken.data.role !== 3 && (
+                  <button onClick={(event) => handleDeleteCoworking(event, coworking.id)}>Supprimer</button>
+                )}
               </article>
             );
           })}
